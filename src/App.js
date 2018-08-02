@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import GeoLocation from './GeoLocation';
-import Weather from './Weather';
+import TaskManger from './TaskManger';
 
 export default class App extends Component {
 
-  constructor(){
-    super(); 
-    this.state={
-    
+  constructor() {
+    super();
+    this.state = {
+
     }
   }
 
   render() {
     return (
       <div>
-         <GeoLocation/> 
-         <Weather />
+        <TaskManger/>
       </div>
-    )}
+    )
+  }
 }
