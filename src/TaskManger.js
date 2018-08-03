@@ -3,6 +3,7 @@ import { Input, Button, Select,Icon } from 'antd';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import './App.css';
+import { addTask,editTask,editInputTask } from './actions/type';
 
 const Option = Select.Option;
 
@@ -31,6 +32,7 @@ class TaskManger extends Component {
         const task = this.state.task;
         const project = this.state.project;
         const type = this.state.type;
+        
         const hour = this.state.hour;
         const data = {
             task,
@@ -38,10 +40,7 @@ class TaskManger extends Component {
             type,
             hour
         }
-        this.props.dispatch({
-            type: 'ADD_TASK',
-            data
-        });
+        this.props.addTask(data)
     }
 
     valueChange(i,value,change){
@@ -50,10 +49,7 @@ class TaskManger extends Component {
          change,
          i
      }
-         this.props.dispatch({
-            type: 'EDIT_VALUE',
-            data
-        });
+     this.props.editTask(data)
      }
 
      onInputChange(value,i,input){
@@ -62,15 +58,10 @@ class TaskManger extends Component {
          index :i,
          change :input
         }
-        this.props.dispatch({
-            type :'INPUT_CHANGE',
-            data
-        })
-
+        this.props.editInputTask(data)
      }
 
     componentWillReceiveProps(nextProps) {
-        console.log("nextProps==",nextProps)
         this.setState({ list: nextProps.list })
     }
 
@@ -112,7 +103,21 @@ const mapStateToProps = (state) => {
     return {
         list: state
     }
-
 }
 
-export default connect(mapStateToProps)(TaskManger);
+const mapDispatchToProps = dispatch => {
+    return {
+        addTask: (data) => {
+        dispatch(addTask(data))
+        },
+        editTask :(data)=>{
+        dispatch(editTask(data))
+        },
+        editInputTask :(data)=>{
+        dispatch(editInputTask(data))
+        }
+
+    };
+  };
+
+export default connect(mapStateToProps,mapDispatchToProps)(TaskManger);
