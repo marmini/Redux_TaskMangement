@@ -5,8 +5,16 @@ const Reducer = (state = initialState, action) => {
     case 'ADD_TASK': {
       return state.concat([action.data]);
     }
+    case 'SAVE_TASK': {
+      const index = action.index 
+      state[index].project = action.data.project
+      state[index].task = action.data.task
+      state[index].hour = action.data.hour
+      state[index].type = action.data.type
+      return new Array(...state) ;
+    }
     case 'DELETE_TASK': {
-      return state.filter((post) => post.task !== action.task);
+      return state.filter((post) => post.key !== action.index);
     }
     case 'EDIT_VALUE': {
       const index = action.data.i

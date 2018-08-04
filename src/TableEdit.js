@@ -113,7 +113,7 @@ class TableEdit extends React.Component {
       {
         title: 'Hours',
         dataIndex: 'hour',
-        width: '5%',
+        width: '15%',
         editable: true,
       },
       {
