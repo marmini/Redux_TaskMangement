@@ -14,6 +14,7 @@ const Reducer = (state = initialState, action) => {
       return new Array(...state) ;
     }
     case 'DELETE_TASK': {
+      console.log(action.index,state)
       return state.filter((post) => post.key !== action.index);
     }
     case 'EDIT_VALUE': {

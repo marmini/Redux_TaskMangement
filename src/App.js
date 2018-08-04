@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TaskManger from './TaskManger';
 import TableEdit from './TableEdit';
 
 export default class App extends Component {
@@ -14,7 +13,6 @@ export default class App extends Component {
     return (
       <div>
         <TableEdit />
-        {/* <TaskManger/> */}
       </div>
     )
   }

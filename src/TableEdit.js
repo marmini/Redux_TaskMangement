@@ -5,7 +5,7 @@ import './index.css';
 import styled from 'styled-components';
 import { Table, Input, InputNumber, Popconfirm, Form, Button, Select } from 'antd';
 import { connect } from 'react-redux';
-import { addTask, saveTask, editTask, editInputTask, deleteTask } from './actions/type';
+import { addTask, saveTask, deleteTask } from './actions/type';
 
 const data = [];
 const FormItem = Form.Item;
@@ -29,8 +29,6 @@ const EditableFormRow = Form.create()(EditableRow);
 
 class EditableCell extends React.Component {
   getInput = () => {
-    console.log("Get Input--", this.props);
-
     if (this.props.inputType === 'number') {
       return <InputNumber />;
     } else if (this.props.inputType === 'select' && this.props.dataIndex === 'project') {
@@ -138,8 +136,6 @@ class TableEdit extends React.Component {
                         onClick={() => this.save(form, record.key)}
                         style={{ marginRight: 8 }}>Save</a>
                     )}
-
-
                   </EditableContext.Consumer>
                   <Popconfirm
                     title="Sure to cancel?"
@@ -166,7 +162,6 @@ class TableEdit extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ data: nextProps.data,task :nextProps.task })
-    console.log(nextProps)
   }
 
   isEditing = (record) => {
@@ -231,7 +226,6 @@ class TableEdit extends React.Component {
   }
 
   addTask(e) {
-    console.log(e);
     const task = this.state.task;
     const project = this.state.project;
     const type = this.state.type;
@@ -246,11 +240,8 @@ class TableEdit extends React.Component {
     }
     this.setState({task :''})
     if (task !== '')
-      this.props.addTask(data)
-     
+      this.props.addTask(data)   
   }
-
-
 
   render() {
     const components = {
@@ -275,7 +266,7 @@ class TableEdit extends React.Component {
         }),
       };
     });
-    console.log("render state.data--", this.state.data)
+    
     return (
       <div>
         <Title >
